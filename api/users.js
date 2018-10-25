@@ -31,6 +31,7 @@ exports.info = async(req,res) => {
     console.log('#######################')
     console.log(decoded)
     decoded.roles=['admin']
+    decoded.avatar='http://e.hiphotos.baidu.com/image/pic/item/aec379310a55b3199f70cd0e4ea98226cffc173b.jpg'
     return res.status(200).json({
       decoded
     })
@@ -85,7 +86,7 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { password, username } = req.body
-  
+  console.log(password)
   try {
     const user = await User.findOne({
       userName: username
@@ -124,6 +125,7 @@ exports.login = async (req, res) => {
       success: true
     })
   } catch (err) {
+    
     console.log('login err...', err)
     return res.status(200).json({
       errorMsg: '登录失败，请稍后再试',
